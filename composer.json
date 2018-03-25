@@ -1,0 +1,17 @@
+{
+    "name": "rkeet/zf-doctrine-form-examples",
+    "description": "Examples for rkeet/zf-doctrine-form repository",
+    "keywords": ["zend", "framework", "zend framework", "mvc", "zf", "zf3", "form", "components", "fieldset", "input filter", "validator", "doctrine"],
+    "homepage": "http://keet.me/",
+    "require": {
+        "rkeet/zf-doctrine-form": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Keet\\Form\\Example\\": "src/"
+        },
+        "classmap": [
+            "src/Module.php"
+        ]
+    }
+}
