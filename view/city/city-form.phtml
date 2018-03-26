@@ -1,0 +1,14 @@
+<?php
+/** @var \Keet\Form\Examples\Form\CityForm $form */
+
+$form->prepare();
+echo $this->form()->openTag($form);
+echo $this->formRow($form->get('csrf'));
+
+echo $this->formRow($form->get('city')->get('id'));
+echo $this->formRow($form->get('city')->get('name'));
+echo $this->formCollection($form->get('city')->get('addresses'));
+echo $this->formRow($form->get('city')->get('coordinates'));
+
+echo $this->formRow($form->get('submit'));
+echo $this->form()->closeTag($form);
