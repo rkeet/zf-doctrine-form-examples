@@ -1,0 +1,51 @@
+<?php
+/** @var \Doctrine\Common\Collections\Collection|\Keet\Form\Examples\Entity\City[] $paginator */
+
+$this->headTitle('Cities');
+
+?>
+
+<h1>Cities</h1>
+
+<a href="<?= $this->url('cities/add') ?>" title="Add">
+    Add
+</a>
+
+<table class="table table-bordered table-hover table-condensed">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Addresses</th>
+        <th>Coordinates</th>
+
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($paginator as $city) : ?>
+        <tr>
+            <th><?= $city->getId() ?></th>
+            <th><?= $city->getAddresses()->count() ?></th>
+            <td>
+                <?php if ($city->getCoordinates() instanceof \Keet\Form\Examples\Entity\Coordinates) : ?>
+                    <?= $city->getCoordinates()->getLatitude() ?> / <?= $city->getCoordinates()->getLongitude() ?>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+
+            <td>
+                <a href="<?= $this->url('cities/view', ['id' => $city->getId()]) ?>" title="View">
+                    View
+                </a>
+                <a href="<?= $this->url('cities/view/edit', ['id' => $city->getId()]) ?>" title="edit">
+                    Edit
+                </a>
+                <a href="<?= $this->url('cities/view/delete', ['id' => $city->getId()]) ?>" title="delete">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    <?php endforeach ?>
+    </tbody>
+</table>

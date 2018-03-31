@@ -1,0 +1,68 @@
+<?php
+/** @var \Keet\Form\Examples\Entity\City $city */
+
+$this->headTitle('City');
+?>
+
+<h2>
+City: <?= $city->getId() ?>
+</h2>
+
+<div class="page-title-buttons">
+    <a href="<?= $this->url('cities/view/edit', ['id' => $city->getId()]) ?>">
+        Edit
+    </a>
+    <a href="<?= $this->url('cities/view/delete', ['id' => $city->getId()]) ?>">
+        Delete
+    </a>
+</div>
+
+<dl>
+    <dt>ID</dt>
+    <dd><?= $city->getId() ?></dd>
+
+    <dt>Coordinates</dt>
+    <dd><?= $city->getCoordinates()->getLatitude() ?> / <?= $city->getCoordinates()->getLongitude() ?></dd>
+
+</dl>
+
+<?php if ($city->getAddresses()->count() > 0) : ?>
+    <table class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Street</th>
+                <th>Coordinates</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($city->getAddresses() as $address) : ?>
+                 <tr>
+                    <th><?= $address->getId() ?></th>
+                    <td><?= $address->getStreet() ?></td>
+                    <td>
+                        <?php if ($address->getCoordinates() instanceof \Keet\Form\Examples\Entity\Coordinates) : ?>
+                            <?= $address->getCoordinates()->getLatitude() ?> / <?= $address->getCoordinates()->getLongitude() ?>
+                        <?php else : ?>
+                            -
+                        <?php endif ?>
+                    </td>
+
+                    <td>
+                        <a href="<?= $this->url('addresses/view', ['id' => $address->getId()]) ?>" title="View">
+                            View
+                        </a>
+                        <a href="<?= $this->url('addresses/view/edit', ['id' => $address->getId()]) ?>" title="edit">
+                            Edit
+                        </a>
+                        <a href="<?= $this->url('addresses/view/delete', ['id' => $address->getId()]) ?>" title="delete">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+           <?php endforeach ?>
+        </tbody>
+    </table>
+<?php endif ?>
