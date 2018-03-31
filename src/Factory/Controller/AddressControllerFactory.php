@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
 use Keet\Form\Examples\Controller\AddressController;
+use Keet\Form\Examples\Entity\Address;
 use Keet\Form\Examples\Form\AddressForm;
 use Keet\Form\Form\GenericDoctrineDeleteForm;
 use Zend\ServiceManager\Factory\FactoryInterface;
@@ -25,9 +26,14 @@ class AddressControllerFactory implements FactoryInterface
         /** @var ObjectManager $objectManager */
         $objectManager = $container->get(EntityManager::class);
         /** @var AddressForm $addressForm */
-        $addressForm = $container->get('FormElementManager')->build(AddressForm::class, []); // TODO pass options for form if any?
+        $addressForm = $container->get('FormElementManager')->build(AddressForm::class, []);
         /** @var GenericDoctrineDeleteForm $deleteForm */
-        $deleteForm = $container->get('FormElementManager')->build(GenericDoctrineDeleteForm::class, []); // TODO pass options for form if any?
+        $deleteForm = $container->get('FormElementManager')->build(
+            GenericDoctrineDeleteForm::class,
+            [
+                'entity_name' => Address::class,
+                'unique_property' => 'id',
+            ]);
 
         return new AddressController(
             $objectManager,
