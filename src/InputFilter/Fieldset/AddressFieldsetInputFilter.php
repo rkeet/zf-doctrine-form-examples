@@ -2,7 +2,8 @@
 
 namespace Keet\Form\Examples\InputFilter\Fieldset;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ObjectManager;
+use Keet\Form\Examples\Entity\Address;
 use Keet\Form\InputFilter\AbstractDoctrineFieldsetInputFilter;
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
@@ -16,16 +17,15 @@ class AddressFieldsetInputFilter extends AbstractDoctrineFieldsetInputFilter
     protected $coordinatesFieldsetInputFilter;
 
     public function __construct(
-        EntityManager $objectManager,
+        ObjectManager $objectManager,
         Translator $translator,
-        string $entityFQCN = null,
         CoordinatesFieldsetInputFilter $filter
     ) {
         $this->coordinatesFieldsetInputFilter = $filter;
 
         parent::__construct([
             'object_manager' => $objectManager,
-            'object_repository' => $objectManager->getRepository(is_null($entityFQCN) ? Address::class : $entityFQCN),
+            'object_repository' => $objectManager->getRepository(Address::class),
             'translator' => $translator,
         ]);
     }
