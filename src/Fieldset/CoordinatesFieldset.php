@@ -2,10 +2,10 @@
 
 namespace Keet\Form\Examples\Fieldset;
 
-use Keet\Form\Fieldset\AbstractFieldset;
+use Keet\Form\Fieldset\AbstractDoctrineFieldset;
 use Zend\Form\Element\Text;
 
-class CoordinatesFieldset extends AbstractFieldset
+class CoordinatesFieldset extends AbstractDoctrineFieldset
 {
     public function init()
     {
