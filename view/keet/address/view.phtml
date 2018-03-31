@@ -1,0 +1,34 @@
+<?php
+/** @var \Keet\Form\Examples\Entity\Address $address */
+
+$this->headTitle('Address');
+?>
+
+<h2>
+Address: <?= $address->getId() ?>
+</h2>
+
+<div class="page-title-buttons">
+    <a href="<?= $this->url('addresses/view/edit', ['id' => $address->getId()]) ?>">
+        Edit
+    </a>
+    <a href="<?= $this->url('addresses/view/delete', ['id' => $address->getId()]) ?>">
+        Delete
+    </a>
+</div>
+
+<dl>
+    <dt>ID</dt>
+    <dd><?= $address->getId() ?></dd>
+
+    <dt>Street</dt>
+    <dd><?= $address->getStreet() ?></dd>
+
+    <dt>City</dt>
+    <dd><?= $address->getCity()->getName() ?></dd>
+
+    <?php if ($address->getCoordinates() instanceof \Keet\Form\Examples\Entity\Coordinates) : ?>
+        <dt>Coordinates</dt>
+        <dd><?= $address->getCoordinates()->getLatitude() ?> / <?= $address->getCoordinates()->getLongitude() ?></dd>
+    <?php endif ?>
+</dl>

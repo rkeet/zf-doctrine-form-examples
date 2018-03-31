@@ -1,0 +1,53 @@
+<?php
+/** @var \Doctrine\Common\Collections\Collection|\Keet\Form\Examples\Entity\Address[] $paginator */
+
+$this->headTitle('Addresses');
+
+?>
+
+<h1>Addresses</h1>
+
+<a href="<?= $this->url('addresses/add') ?>" title="Add">
+    Add
+</a>
+
+<table class="table table-bordered table-hover table-condensed">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>Coordinates</th>
+
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($paginator as $address) : ?>
+        <tr>
+            <th><?= $address->getId() ?></th>
+            <td><?= $address->getStreet() ?></td>
+            <td><?= $address->getCity()->getName() ?></td>
+            <td>
+                <?php if ($address->getCoordinates() instanceof \Keet\Form\Examples\Entity\Coordinates) : ?>
+                    <?= $address->getCoordinates()->getLatitude() ?> / <?= $address->getCoordinates()->getLongitude() ?>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+
+            <td>
+                <a href="<?= $this->url('addresses/view', ['id' => $address->getId()]) ?>" title="View">
+                    View
+                </a>
+                <a href="<?= $this->url('addresses/view/edit', ['id' => $address->getId()]) ?>" title="edit">
+                    Edit
+                </a>
+                <a href="<?= $this->url('addresses/view/delete', ['id' => $address->getId()]) ?>" title="delete">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    <?php endforeach ?>
+    </tbody>
+</table>

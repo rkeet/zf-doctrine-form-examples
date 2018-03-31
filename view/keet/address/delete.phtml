@@ -1,0 +1,8 @@
+<?php
+/** @var \Keet\Form\Form\GenericDoctrineDeleteForm $form */
+
+$this->headTitle($this->translate('Delete address') . ': ' . $form->getObject()->getId());
+
+?>
+
+<?= $this->partial('keet/partials/form/genericDoctrineDeleteForm', ['form' => $form]) ?>
