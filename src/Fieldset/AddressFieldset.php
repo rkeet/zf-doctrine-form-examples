@@ -46,6 +46,7 @@ class AddressFieldset extends AbstractDoctrineFieldset
             'required' => false,
             'name' => 'coordinates',
             'options' => [
+                'label' => _('Coordinates'),
                 'use_as_base_fieldset' => false,
             ],
         ]);
