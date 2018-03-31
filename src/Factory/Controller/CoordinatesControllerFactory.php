@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
 use Keet\Form\Examples\Controller\CoordinatesController;
+use Keet\Form\Examples\Entity\Coordinates;
 use Keet\Form\Examples\Form\CoordinatesForm;
 use Keet\Form\Form\GenericDoctrineDeleteForm;
 use Zend\ServiceManager\Factory\FactoryInterface;
@@ -27,7 +28,13 @@ class CoordinatesControllerFactory implements FactoryInterface
         /** @var CoordinatesForm $coordinatesForm */
         $coordinatesForm = $container->get('FormElementManager')->build(CoordinatesForm::class, []); // TODO pass options for form if any?
         /** @var GenericDoctrineDeleteForm $deleteForm */
-        $deleteForm = $container->get('FormElementManager')->build(GenericDoctrineDeleteForm::class, []); // TODO pass options for form if any?
+        $deleteForm = $container->get('FormElementManager')->build(
+            GenericDoctrineDeleteForm::class,
+            [
+                'entity_name' => Coordinates::class,
+                'unique_property' => 'id',
+            ]
+        );
 
         return new CoordinatesController(
             $objectManager,
