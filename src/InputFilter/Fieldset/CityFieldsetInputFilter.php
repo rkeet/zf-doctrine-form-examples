@@ -2,7 +2,7 @@
 
 namespace Keet\Form\Examples\InputFilter\Fieldset;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ObjectManager;
 use Keet\Form\Examples\Entity\City;
 use Keet\Form\InputFilter\AbstractDoctrineFieldsetInputFilter;
 use Keet\Form\InputFilter\CollectionInputFilter;
@@ -18,16 +18,15 @@ class CityFieldsetInputFilter extends AbstractDoctrineFieldsetInputFilter
     protected $addressFieldsetCollectionInputFilter;
 
     public function __construct(
-        EntityManager $objectManager,
+        ObjectManager $objectManager,
         Translator $translator,
-        string $entityFQCN = null,
-        CollectionInputFilter $filter
+        CollectionInputFilter $addressFieldsetCollectionInputFilter
     ) {
-        $this->addressFieldsetCollectionInputFilter = $filter;
+        $this->addressFieldsetCollectionInputFilter = $addressFieldsetCollectionInputFilter;
 
         parent::__construct([
             'object_manager' => $objectManager,
-            'object_repository' => $objectManager->getRepository(is_null($entityFQCN) ? City::class : $entityFQCN),
+            'object_repository' => $objectManager->getRepository(City::class),
             'translator' => $translator,
         ]);
     }
