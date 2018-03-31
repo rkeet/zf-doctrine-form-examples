@@ -14,8 +14,12 @@ class CityFieldset extends AbstractDoctrineFieldset
      */
     protected $addressFieldset;
 
-    public function __construct(ObjectManager $objectManager, $name, $options = [], AddressFieldset $addressFieldset)
-    {
+    public function __construct(
+        ObjectManager $objectManager,
+        string $name,
+        array $options = [],
+        AddressFieldset $addressFieldset
+    ) {
         $this->setAddressFieldset($addressFieldset);
 
         parent::__construct($objectManager, $name, $options);
@@ -53,6 +57,7 @@ class CityFieldset extends AbstractDoctrineFieldset
             'required' => false,
             'name' => 'coordinates',
             'options' => [
+                'label' => _('Coordinates'),
                 'use_as_base_fieldset' => false,
             ],
         ]);
