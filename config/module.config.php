@@ -39,6 +39,8 @@ return [
             'Keet\Form\Examples' => 'keet',
         ],
         'template_map' => [
+            'keet/partials/address/addressForm' => __DIR__ . '/../view/partials/address/address-form.phtml',
+            'keet/partials/city/cityForm' => __DIR__ . '/../view/partials/city/city-form.phtml',
             'keet/partials/coordinates/coordinatesForm' => __DIR__ . '/../view/partials/coordinates/coordinates-form.phtml',
         ],
         'template_path_stack' => [
