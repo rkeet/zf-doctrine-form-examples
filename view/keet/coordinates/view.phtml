@@ -1,0 +1,29 @@
+<?php
+/** @var \Keet\Form\Examples\Entity\Coordinates $coordinates */
+
+$this->headTitle('Coordinates');
+?>
+
+<h2>
+Coordinates: <?= $coordinates->getId() ?>
+</h2>
+
+<div class="page-title-buttons">
+    <a href="<?= $this->url('coordinates/view/edit', ['id' => $coordinates->getId()]) ?>">
+        Edit
+    </a>
+    <a href="<?= $this->url('coordinates/view/delete', ['id' => $coordinates->getId()]) ?>">
+        Delete
+    </a>
+</div>
+
+<dl>
+    <dt>ID</dt>
+    <dd><?= $coordinates->getId() ?></dd>
+
+    <dt>Latitude</dt>
+    <dd><?= $coordinates->getLatitude() ?></dd>
+
+    <dt>Longitude</dt>
+    <dd><?= $coordinates->getLongitude() ?></dd>
+</dl>

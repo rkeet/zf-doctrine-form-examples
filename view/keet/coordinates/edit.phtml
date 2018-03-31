@@ -1,0 +1,8 @@
+<?php
+/** @var \Keet\Form\Examples\Form\CoordinatesForm $form */
+
+$this->headTitle($this->translate('Edit coordinates') . ': ' . $form->getObject()->getId());
+
+?>
+
+<?= $this->partial('keet/partials/coordinates/coordinatesForm', ['form' => $form]) ?>
