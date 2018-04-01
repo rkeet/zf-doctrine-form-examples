@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
 use Keet\Form\Examples\Controller\CityController;
+use Keet\Form\Examples\Entity\City;
 use Keet\Form\Examples\Form\CityForm;
 use Keet\Form\Form\GenericDoctrineDeleteForm;
 use Zend\ServiceManager\Factory\FactoryInterface;
@@ -25,9 +26,14 @@ class CityControllerFactory implements FactoryInterface
         /** @var ObjectManager $objectManager */
         $objectManager = $container->get(EntityManager::class);
         /** @var CityForm $cityForm */
-        $cityForm = $container->get('FormElementManager')->build(CityForm::class, []); // TODO pass options for form if any?
+        $cityForm = $container->get('FormElementManager')->build(CityForm::class, []);
         /** @var GenericDoctrineDeleteForm $deleteForm */
-        $deleteForm = $container->get('FormElementManager')->build(GenericDoctrineDeleteForm::class, []); // TODO pass options for form if any?
+        $deleteForm = $container->get('FormElementManager')->build(
+            GenericDoctrineDeleteForm::class,
+            [
+                'entity_name' => City::class,
+                'unique_property' => 'id',
+            ]);
 
         return new CityController(
             $objectManager,
