@@ -8,7 +8,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Keet\\Form\\Example\\": "src/"
+            "Keet\\Form\\Examples\\": "src/"
         },
         "classmap": [
             "src/Module.php"
