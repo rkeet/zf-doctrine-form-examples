@@ -9,7 +9,6 @@ use Zend\Form\Element\Text;
 
 class AddressFieldset extends AbstractDoctrineFieldset
 {
-
     public function init()
     {
         parent::init();

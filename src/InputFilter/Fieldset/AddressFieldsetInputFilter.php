@@ -30,9 +30,6 @@ class AddressFieldsetInputFilter extends AbstractDoctrineFieldsetInputFilter
         ]);
     }
 
-    /**
-     * Sets AddressFieldset Element validation
-     */
     public function init()
     {
         parent::init();
