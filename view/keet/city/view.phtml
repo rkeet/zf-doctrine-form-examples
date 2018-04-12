@@ -21,9 +21,13 @@ City: <?= $city->getId() ?>
     <dt>ID</dt>
     <dd><?= $city->getId() ?></dd>
 
-    <dt>Coordinates</dt>
-    <dd><?= $city->getCoordinates()->getLatitude() ?> / <?= $city->getCoordinates()->getLongitude() ?></dd>
+    <dt>Name</dt>
+    <dd><?= $city->getName() ?></dd>
 
+    <?php if ($city->getCoordinates() instanceof \Keet\Form\Examples\Entity\Coordinates) : ?>
+        <dt>Coordinates</dt>
+        <dd><?= $city->getCoordinates()->getLatitude() ?> / <?= $city->getCoordinates()->getLongitude() ?></dd>
+    <?php endif ?>
 </dl>
 
 <?php if ($city->getAddresses()->count() > 0) : ?>

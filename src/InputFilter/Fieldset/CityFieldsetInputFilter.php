@@ -17,12 +17,17 @@ class CityFieldsetInputFilter extends AbstractDoctrineFieldsetInputFilter
     /** @var CollectionInputFilter $addressFieldsetCollectionInputFilter */
     protected $addressFieldsetCollectionInputFilter;
 
+    /** @var CoordinatesFieldsetInputFilter $coordinatesFieldsetInputFilter */
+    protected $coordinatesFieldsetInputFilter;
+
     public function __construct(
         ObjectManager $objectManager,
         Translator $translator,
-        CollectionInputFilter $addressFieldsetCollectionInputFilter
+        CollectionInputFilter $addressFieldsetCollectionInputFilter,
+        CoordinatesFieldsetInputFilter $coordinatesFieldsetInputFilter
     ) {
         $this->addressFieldsetCollectionInputFilter = $addressFieldsetCollectionInputFilter;
+        $this->coordinatesFieldsetInputFilter = $coordinatesFieldsetInputFilter;
 
         parent::__construct([
             'object_manager' => $objectManager,
@@ -36,6 +41,7 @@ class CityFieldsetInputFilter extends AbstractDoctrineFieldsetInputFilter
         parent::init();
 
         $this->add($this->addressFieldsetCollectionInputFilter, 'addresses');
+        $this->add($this->coordinatesFieldsetInputFilter, 'coordinates');
 
         $this->add([
             'name' => 'name',
@@ -59,11 +65,6 @@ class CityFieldsetInputFilter extends AbstractDoctrineFieldsetInputFilter
                     ],
                 ],
             ],
-        ]);
-
-        $this->add([
-            'name' => 'coordinates',
-            'required' => true,
         ]);
     }
 }

@@ -6,6 +6,7 @@ use Interop\Container\ContainerInterface;
 use Keet\Form\Examples\Entity\City;
 use Keet\Form\Examples\InputFilter\Fieldset\AddressFieldsetInputFilter;
 use Keet\Form\Examples\InputFilter\Fieldset\CityFieldsetInputFilter;
+use Keet\Form\Examples\InputFilter\Fieldset\CoordinatesFieldsetInputFilter;
 use Keet\Form\Factory\AbstractDoctrineFieldsetInputFilterFactory;
 use Keet\Form\InputFilter\CollectionInputFilter;
 
@@ -33,10 +34,15 @@ class CityFieldsetInputFilterFactory extends AbstractDoctrineFieldsetInputFilter
         $addressFieldsetCollectionInputFilter->setInputFilter($addressFieldsetInputFilter);
         $addressFieldsetCollectionInputFilter->setIsRequired(false);
 
+        /** @var CoordinatesFieldsetInputFilter $coordinatesFieldsetInputFilter */
+        $coordinatesFieldsetInputFilter = $this->getInputFilterManager()->get(CoordinatesFieldsetInputFilter::class);
+        $coordinatesFieldsetInputFilter->setRequired(false);
+
         return new CityFieldsetInputFilter(
             $this->getObjectManager(),
             $this->getTranslator(),
-            $addressFieldsetCollectionInputFilter
+            $addressFieldsetCollectionInputFilter,
+            $coordinatesFieldsetInputFilter
         );
     }
 }
